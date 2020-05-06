@@ -1,0 +1,6 @@
+Value NAME (\S+)
+Value RD (\S+)
+Value ADDRESS_FAMILY (\S+)
+
+Start
+  ^${NAME}\s+${RD}\s+${ADDRESS_FAMILY}.*

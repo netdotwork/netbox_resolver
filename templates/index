@@ -1,0 +1,13 @@
+Template, Hostname, Vendor, Command
+disp_elabel.template, .*, huawei, di[[splay]] el[[abe]]
+disp_elabel.template, .*, huawei, Y[[ES]]
+disp_arp_int.template, .*, huawei, di[[splay]] arp a[[ll]]
+disp_vpn_intf.template, .*, huawei, di[[splay]] ip v[[pn-instance]] in[[terface]]
+disp_cur_int.template, .*, huawei, di[[splay]] cur in[[terface]]
+disp_dev.template, .*, huawei, di[[splay]] dev[[ice]]
+disp_int.template, .*, huawei, di[[splay]] int[[erface]]
+disp_esn.template, .*, huawei, di[[splay]] es[[n]]
+disp_ip_int_br.template, .*, huawei, di[[splay]] ip int[[erface]] br[[ief]]
+disp_ip_int.template, .*, huawei, di[[splay]] ip int[[erface]]
+disp_ip_vpn.template, .*, huawei, di[[splay]] ip v[[pn-instance]]
+

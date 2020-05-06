@@ -1,0 +1,8 @@
+Value NAME (\S+)
+Value RD (\d+:\d+)
+
+Start
+  ^  ${NAME}\s+${RD}\s+ -> Record
+  ^  ${NAME}\s+IP.* -> Record
+
+

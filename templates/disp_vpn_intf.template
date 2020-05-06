@@ -1,0 +1,8 @@
+Value NAME (.*)
+Value List INTERFACE (\S+)
+
+Start
+  ^ VPN-Instance Name and ID : -> Continue.Record
+  ^ VPN-Instance Name and ID : ${NAME},
+  ^  Interface list : ${INTERFACE}
+  ^                   ${INTERFACE}

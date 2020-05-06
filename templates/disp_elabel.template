@@ -1,0 +1,12 @@
+Value List NAME (\[.*\])
+Value PART_ID (.*)
+Value SERIAL (.*)
+Value DESCRIPTION (.*)
+Value MANUFACTURER (.*)
+
+Start
+  ^${NAME}
+  ^BoardType=${PART_ID}
+  ^BarCode=${SERIAL}
+  ^Description=${DESCRIPTION}
+  ^(.*VendorName=|VendorName=)${MANUFACTURER} -> Record

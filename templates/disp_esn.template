@@ -1,0 +1,10 @@
+Value ESN_MASTER (ESN of master: \S+)
+Value ESN_SLAVE (ESN of slave)
+Value MAC_ADDRESS (\w+-\w+-\w+)
+Value MTU (.*)
+
+Start
+  ^${NAME} current state.*
+  ^Description:${DESCRIPTION}
+  ^.* Maximum Transmit Unit is ${MTU}
+  ^.* Hardware address is ${MAC_ADDRESS} -> Record

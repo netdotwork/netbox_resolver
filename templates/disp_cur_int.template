@@ -1,0 +1,7 @@
+Value INTERFACE (\S+)
+Value DESCRIPTION (.*)
+
+Start
+  ^interface -> Continue.Record
+  ^interface ${INTERFACE}
+  ^ description ${DESCRIPTION}

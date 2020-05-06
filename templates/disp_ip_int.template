@@ -1,0 +1,7 @@
+Value NAME (\S+)
+Value List ADDRESS (\d+(.\d+){3}/(\d+))
+
+Start
+  ^${NAME} current state : UP
+  ^Internet Address is ${ADDRESS}
+  ^Broadcast address.* -> Record

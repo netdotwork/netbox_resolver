@@ -1,0 +1,5 @@
+Value INTERFACE (\S+)
+Value ADDRESS (\d+(.\d+){3}/(\d+))
+
+Start
+  ^${INTERFACE}\s+${ADDRESS}\s+up\s+up
