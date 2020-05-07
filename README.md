@@ -2,7 +2,7 @@
 
 Netbox_resolver is an autoIPAM/DCIM tool for [NetBox](https://github.com/netbox-community/netbox)
 
-You can add new data and check/correct data that was previously added to the netbox database, and automate this process using the scheduler.
+You can add new data, check/correct previously added data in the NetBox database and automate this process using the scheduler.
 
 Netbox_resolver will collect as much information as possible from devices and add it to netbox (if there is no device, it will create it):
 - Site
