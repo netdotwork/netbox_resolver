@@ -56,7 +56,12 @@ _ _ _
 
 ## Usage
 
-Requires Python 3.7+
+Requires `Python 3.7+`
+
+`pip install pynetbox`
+
+`pip install netmiko`
+
 
 **Netbox_resolver has only 2 methods:**
 - `def send_ip(): for single device`

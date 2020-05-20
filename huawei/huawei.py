@@ -337,25 +337,38 @@ class HuaweiIpam(NetboxIpamResolver):
                         addresses["name"], ssh_session_object
                     )
 
-                    address_object_dict = {
-                        address_object.interface.device.name: sysname,
-                        address_object.interface.name: addresses["name"],
-                        address_object.description: description,
-                    }
+                    if not address_object.interface:
+                        address_object.update(
+                            {
+                                "address": addr,
+                                "interface": {
+                                    "device": {"name": sysname},
+                                    "name": addresses["name"],
+                                },
+                                "description": description,
+                            }
+                        )
 
-                    for key, value in address_object_dict.items():
-                        if not address_object.interface or not key == value:
-                            address_object.update(
-                                {
-                                    "address": addr,
-                                    "interface": {
-                                        "device": {"name": sysname},
-                                        "name": addresses["name"],
-                                    },
-                                    "description": description,
-                                }
-                            )
-                            break
+                    else:
+                        address_object_dict = {
+                            address_object.interface.device.name: sysname,
+                            address_object.interface.name: addresses["name"],
+                            address_object.description: description,
+                        }
+
+                        for key, value in address_object_dict.items():
+                            if not key == value:
+                                address_object.update(
+                                    {
+                                        "address": addr,
+                                        "interface": {
+                                            "device": {"name": sysname},
+                                            "name": addresses["name"],
+                                        },
+                                        "description": description,
+                                    }
+                                )
+                                break
 
                     vrf = self._check_vrf_interfaces(
                         addresses["name"], ssh_session_object
