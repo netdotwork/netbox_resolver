@@ -71,7 +71,7 @@ Netbox_resolver has the same syntax as netmiko.
 
 **You can run netbox_resolver for a single device:**
 
-```
+```python
 device_params = {
 "netbox": "http://netbox_domain_name_or_ip/",
 "token": "netbox_token",
@@ -92,7 +92,7 @@ o.send_ip()
 **You can run netbox_resolver for n-th number of devices at the same time:**
 
 
-```
+```python
 devices_params = {
 "netbox": "http://netbox_domain_name_or_ip/",
 "token": "netbox_token",
@@ -139,3 +139,13 @@ The following arguments are optional and described in `nb_ipam_resolver.py`:
 ## Scheduler
 
 You can make the process regular by adding netbox_resolver to the scheduler, and as a result, automate the routine process of keeping IPAM/DCIM up to date.
+
+### Protection from sysname changing
+
+If you work with the scheduler and decide to change device sysname after it was added to the NetBox database, this can create a lil problem... Script will try to create a new device with new sysname. So it is better to add protection - in this case, script will not do anything until you match the device sysname and site, sysname in the NetBox database. In short, if you change sysname on device, you need to change device name and site in NetBox, otherwise this function returns nothing.
+
+Please, check `huawei.py` and delete or comment block of code between `Protection from sysname changing` and `End of protection from sysname changing` if you don't need it.
+
+## pdb
+
+For script debugging you can add your parameters (for single device) in `pdb_test.py` and start pdb like `python -m pdb pdb_test.py` in your virtual environment.

@@ -146,6 +146,29 @@ class HuaweiIpam(NetboxIpamResolver):
         interfaces = self._check_interfaces(sysname, ssh_session_object)
         # ip addresses list
         ip_addresses = self._check_ip_addresses(ssh_session_object)
+
+        # Protection from sysname changing
+
+        # If you work with the scheduler and decide to change device sysname
+        # after it was added to the NetBox database, this can create a lil
+        # problem... Script will try to create a new device with new sysname. So
+        # it is better to add protection - in this case, script will not do
+        # anything until you match the device sysname and site, sysname in the NetBox database
+
+        # In short, if you change sysname on device, you need to change device name and
+        # site in netbox, otherwisethis function returns nothing
+
+        # Delete or comments this block of code if you don't need it
+        for item in ip_addresses:
+            for address in item.values():
+                if device_ip in str(address):
+                    mgmt_ip = address[0]
+                    ip = self.nb.ipam.ip_addresses.get(address=mgmt_ip)
+                    if ip and ip.interface:
+                        if str(ip.interface.device) != site:
+                            return
+        # End of protection from sysname changing
+
         # parameters for checking and creating
         points = {
             self.nb.dcim.device_types: (
@@ -178,8 +201,9 @@ class HuaweiIpam(NetboxIpamResolver):
             ("G",): 1000,
             ("Virtual", "Vlanif", "LoopBack", "NULL", "Tunnel"): 0,
             ("X",): 1150,
-            ("Ethernet",): 800,
+            ("Ethernet", "M"): 800, #"M" - Meth
             ("Eth-Trunk",): 200,
+            ("A",): 32767, #"A" - Aux
         }
         # check device if it is
         self._update_device(
