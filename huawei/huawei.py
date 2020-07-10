@@ -165,7 +165,7 @@ class HuaweiIpam(NetboxIpamResolver):
                     mgmt_ip = address[0]
                     ip = self.nb.ipam.ip_addresses.get(address=mgmt_ip)
                     if ip and ip.interface:
-                        if str(ip.interface.device) != site:
+                        if str(ip.interface.device) != sysname:
                             return
         # End of protection from sysname changing
 
@@ -204,6 +204,7 @@ class HuaweiIpam(NetboxIpamResolver):
             ("Ethernet", "M"): 800, #"M" - Meth
             ("Eth-Trunk",): 200,
             ("A",): 32767, #"A" - Aux
+            ("C",): 2830, #"C" - Cellular
         }
         # check device if it is
         self._update_device(
