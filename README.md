@@ -1,3 +1,10 @@
+---
+
+## This repository is no longer maintained
+The `netbox_resolver` tool works with `netbox 2.8.5`, `netmiko==3.1.0`, `pynetbox==5.0.5`, `textfsm==1.1.0` and not tested with later versions
+
+---
+
 ## Netbox_resolver
 
 Netbox_resolver is an autoIPAM/DCIM tool for [NetBox](https://github.com/netbox-community/netbox)
